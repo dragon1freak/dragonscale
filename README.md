@@ -1,6 +1,13 @@
 # DragonScale - An audio intensity addon
 
+
+
 Easily control the intensity of your layered audio tracks with a new `DragonScaleStream` resource and convenience nodes for the three different `AudioStreamPlayer` nodes!  Heavily inspired by the [Ovani](https://ovanisound.com/) Godot music plugin.
+<details>
+<summary>Preview Video</summary>
+  
+https://github.com/user-attachments/assets/93dec048-7f1b-40c1-93fe-516c1b758781
+</details>
 
 ### Installation
 Just drop the `addons` folder into your project if you dont have one already, or add the `dragon_scale` folder into your existing `addons` folder.  You may need to reload your project but the new resource and nodes should be available!
