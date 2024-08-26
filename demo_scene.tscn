@@ -1,0 +1,156 @@
+[gd_scene load_steps=9 format=3 uid="uid://dldhd15l5utun"]
+
+[ext_resource type="Script" path="res://demo_scene.gd" id="1_rvkh7"]
+[ext_resource type="Script" path="res://addons/dragon_scale/dragon_scale_stream.gd" id="2_x8gnj"]
+[ext_resource type="AudioStream" uid="uid://cvndfkfswv8gb" path="res://audio/Cyberbreak (RT 3.077)/Industrial Cyberbreak Intensity 1.wav" id="3_bqebn"]
+[ext_resource type="Script" path="res://addons/dragon_scale/dragon_scale_player.gd" id="3_w5eod"]
+[ext_resource type="AudioStream" uid="uid://dmhjrwm8i13nh" path="res://audio/Cyberbreak (RT 3.077)/Industrial Cyberbreak Intensity 2.wav" id="4_5wtqe"]
+[ext_resource type="AudioStream" uid="uid://us8aqpwp1x3k" path="res://audio/Cyberbreak (RT 3.077)/Industrial Cyberbreak Main.wav" id="5_j2spk"]
+[ext_resource type="Script" path="res://demo_button.gd" id="6_y518t"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_icnei"]
+stream_count = 3
+stream_0/stream = ExtResource("3_bqebn")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("4_5wtqe")
+stream_1/volume = inf_neg
+stream_2/stream = ExtResource("5_j2spk")
+stream_2/volume = inf_neg
+script = ExtResource("2_x8gnj")
+intensity = 0.0
+
+[node name="Root" type="Node2D"]
+script = ExtResource("1_rvkh7")
+
+[node name="DragonScalePlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamSynchronized_icnei")
+autoplay = true
+script = ExtResource("3_w5eod")
+
+[node name="DemoUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="DemoUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DemoUI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 384.0
+offset_right = -384.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="CurrentIntensity" type="Label" parent="DemoUI/Control/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Current Intensity: 0.0"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DemoUI/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="DirectLabel" type="Label" parent="DemoUI/Control/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Set intensity directly (0.0 - 1.0)"
+
+[node name="DirectSlider" type="HSlider" parent="DemoUI/Control/VBoxContainer/VBoxContainer/DirectLabel"]
+layout_mode = 2
+offset_top = 27.0
+offset_right = 384.0
+offset_bottom = 43.0
+max_value = 1.0
+step = 0.05
+
+[node name="LerpLabel" type="Label" parent="DemoUI/Control/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Lerp to intensity"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DemoUI/Control/VBoxContainer/VBoxContainer/LerpLabel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.21739
+anchor_right = 1.0
+anchor_bottom = 1.21739
+offset_bottom = 66.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="OneSecond" type="HBoxContainer" parent="DemoUI/Control/VBoxContainer/VBoxContainer/LerpLabel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="DemoUI/Control/VBoxContainer/VBoxContainer/LerpLabel/VBoxContainer/OneSecond"]
+layout_mode = 2
+text = "Low (1s)"
+script = ExtResource("6_y518t")
+
+[node name="Button2" type="Button" parent="DemoUI/Control/VBoxContainer/VBoxContainer/LerpLabel/VBoxContainer/OneSecond"]
+layout_mode = 2
+text = "Mid (1s)"
+script = ExtResource("6_y518t")
+target_intensity = 0.5
+
+[node name="Button3" type="Button" parent="DemoUI/Control/VBoxContainer/VBoxContainer/LerpLabel/VBoxContainer/OneSecond"]
+layout_mode = 2
+text = "High (1s)"
+script = ExtResource("6_y518t")
+target_intensity = 1.0
+
+[node name="FiveSecond" type="HBoxContainer" parent="DemoUI/Control/VBoxContainer/VBoxContainer/LerpLabel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="DemoUI/Control/VBoxContainer/VBoxContainer/LerpLabel/VBoxContainer/FiveSecond"]
+layout_mode = 2
+text = "Low (5s)"
+script = ExtResource("6_y518t")
+time = 5
+
+[node name="Button2" type="Button" parent="DemoUI/Control/VBoxContainer/VBoxContainer/LerpLabel/VBoxContainer/FiveSecond"]
+layout_mode = 2
+text = "Mid (5s)"
+script = ExtResource("6_y518t")
+target_intensity = 0.5
+time = 5
+
+[node name="Button3" type="Button" parent="DemoUI/Control/VBoxContainer/VBoxContainer/LerpLabel/VBoxContainer/FiveSecond"]
+layout_mode = 2
+text = "High (5s)"
+script = ExtResource("6_y518t")
+target_intensity = 1.0
+time = 5
+
+[node name="TenSecond" type="HBoxContainer" parent="DemoUI/Control/VBoxContainer/VBoxContainer/LerpLabel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="DemoUI/Control/VBoxContainer/VBoxContainer/LerpLabel/VBoxContainer/TenSecond"]
+layout_mode = 2
+text = "Low (10s)"
+script = ExtResource("6_y518t")
+time = 10
+
+[node name="Button2" type="Button" parent="DemoUI/Control/VBoxContainer/VBoxContainer/LerpLabel/VBoxContainer/TenSecond"]
+layout_mode = 2
+text = "Mid (10s)"
+script = ExtResource("6_y518t")
+target_intensity = 0.5
+time = 10
+
+[node name="Button3" type="Button" parent="DemoUI/Control/VBoxContainer/VBoxContainer/LerpLabel/VBoxContainer/TenSecond"]
+layout_mode = 2
+text = "High (10s)"
+script = ExtResource("6_y518t")
+target_intensity = 1.0
+time = 10
